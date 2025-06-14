@@ -1,0 +1,537 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>Brother HL-1450 laser printer - adding ethernet port</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.4.1  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20250612;11250074">
+	<META NAME="KEYWORDS" CONTENT="Brother HL-1450 HL-1440 HL-1250 HL-1430 ethernet print server ethernet port openwrt TL-WR710N">
+	<META NAME="ProgId" CONTENT="FrontPage.Editor.Document">
+	<META HTTP-EQUIV="Content-Language" CONTENT="en-gb">
+</HEAD>
+<BODY LANG="en-GB" DIR="LTR">
+<P STYLE="border-top: none; border-bottom: 1.10pt double #808080; border-left: none; border-right: none; padding-top: 0cm; padding-bottom: 0.05cm; padding-left: 0cm; padding-right: 0cm">
+<BR><BR>
+</P>
+<HR>
+<P><FONT FACE="Arial"><FONT SIZE=6><B>Brother HL-1450
+(1240/1250/1440) laser printer &ndash; adding an Ethernet Port</B></FONT></FONT></P>
+<P>First created 6 Nov 2020.</P>
+<P><IMG SRC="images/brother0.jpg" NAME="graphics20" ALIGN=BOTTOM WIDTH=331 HEIGHT=289 BORDER=0></P>
+<P>I've owned a Brother HL-1450 laser printer since its purchase in
+2004. It has a centronics parallel port and USB1 socket for
+connectivity.</P>
+<P>In recent years, the printer has been wired via USB to old routers
+running opensource firmwares such as Tomato, OpenWrt, or Padavan,
+dedicated to enabling the printer to be shared with multiple
+computers. This is known as a print server. It works with my Windows,
+linux and Hackintosh computers.</P>
+<P>A relative owns the exact same model of printer wired to a Tomato
+router. However, every now and again, when they send a document to
+print, it would just get stuck in the print queue on their Windows
+computer. Deleting the print job and resending made no difference.
+Turning off the print server and laser printer would resolve the
+issue &ndash; the document would have to be subsequently resubmitted.
+I discovered many years ago, performing a scheduled reboot of the
+router (print server) every 24 hours helped, but it didn't totally
+prevent the issue from re-appearing. They put up with the issue for
+many years as it was infrequent.</P>
+<P>More recently, I decided to investigate the problem by replicating
+their printer setup.</P>
+<P>To cut a long story short, I discovered the print server and laser
+printer could be 'locked out' under certain circumstances. It could
+be reproduced in OpenWrt, so it wasn't confined to using Tomato
+software on the router.</P>
+<P>Here is the scenario:</P>
+<P STYLE="margin-left: 0.93cm">Printer server is on 24/7.</P>
+<P STYLE="margin-left: 0.93cm">Laser printer is usually switched off
+to conserve energy. (The Brother HL1450 consumes about 6 watts in
+standby, which is high by today's standards)</P>
+<P STYLE="margin-left: 0.93cm">Person A submits a document for
+printing.</P>
+<P STYLE="margin-left: 0.93cm">The print server receives the request
+and tries to forward the print job data to the laser printer.</P>
+<P STYLE="margin-left: 0.93cm">However, the laser printer is
+off-line.</P>
+<P STYLE="margin-left: 0.93cm">If the laser printer is turned on, the
+document will be printed successfully.</P>
+<P STYLE="margin-left: 0.93cm">HOWEVER, if Person A chooses not to
+switch on the printer, turns off their computer, or perhaps cancels
+the print job by deleting it from the print queue on their Windows
+computer. This is when problems occur.</P>
+<P STYLE="margin-left: 0.02cm">The print server is pretty dumb, it
+simply does NOT expect the print job to be interrupted, and will
+continue to try to connect to the laser printer and print whatever
+data it has received.</P>
+<P STYLE="margin-left: 1.02cm">Person B decides to print a document
+to the same laser printer.</P>
+<P STYLE="margin-left: 1.02cm">However, discovers the document is
+stuck in the print queue on their computer.</P>
+<P STYLE="margin-left: 1.02cm">Person B then turns on the laser
+printer, expecting their printed document to appear. However, nothing
+is printed.</P>
+<P STYLE="margin-left: 1.02cm">The reason is the printer is still
+trying to action the previous request to print a document from Person
+A. However, the data received from Person A may be incomplete and
+therefore causes the HL-1450 laser printer to lock out with a DATA
+error on the printer's status panel.</P>
+<P STYLE="margin-left: 0.02cm">To resolve the problem, both the laser
+printer and the print server must be power cycled. The document sent
+by Person B to the printer may be lost and so will have to be resent.</P>
+<P STYLE="margin-left: 0.02cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 0.02cm">The above lockout condition can be
+prevented by ensuring the laser printer and print server are both
+switched OFF when not in use, or ON when required.</P>
+<P STYLE="margin-left: 0.02cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 0.02cm">For this reason and to eliminate the
+need for an external print server, I decided to retrofit a print
+server into my old Brother HL-1450 laser printer. Both the printer
+and print server would be powered on or off by a single On/Off switch
+on the printer. I needed to find a compact router which could also be
+powered off the laser printer's power supply unit.</P>
+<P STYLE="margin-left: 0.02cm">Most of the newer pocket travel
+routers such as Tplink TL-MR3020 or GliNet MT300n are USB powered.
+According to the service manual, the Brother HL-14xx series is fitted
+with a 5 volt 1.6 Amp PSU. Drawing 5 volts from this PSU to power a
+pocket router might draw too much current, so I needed to look for a
+router with built in AC power supply.</P>
+<P STYLE="margin-left: 0.02cm">The TP-link TL-WR710N and TL-810N
+travel routers have built-in power supply units, and used examples on
+eBay are relatively cheap.</P>
+<P><FONT COLOR="#ff0000"><B>Warning: Stay clear of the TL-WR710N
+v2.0. It only has 4MB RAM. The HW version number is printed on label
+stuck to the router. The v1.0, 1.1, 1.2 and 2.1 have 8MB RAM.</B></FONT></P>
+<P><BR><BR>
+</P>
+<P>The first step is to remove the covers. I found a service manual
+for the Brother HL12xx/14xx series laser printers. There are half a
+dozen screws and some partially hidden plastic clips. Once I worked
+out how to disengage the clips, the covers came off quite easily. I
+have uploaded a copy to my Dropbox folder.</P>
+<P><A HREF="https://www.dropbox.com/s/osdfcsnulwktwme/BROTHER%20HL-1230,%20HL-1440,%20HL-1450,%20HL-1470N%20SM.pdf?dl=0">https://www.dropbox.com/s/osdfcsnulwktwme/BROTHER
+HL-1230, HL-1440, HL-1450, HL-1470N SM.pdf?dl=0</A></P>
+<P><BR><BR>
+</P>
+<P>The HL-1450 has a void for a network interface card found on
+HL-1470 model. The TL-WR710N can squeeze into this void. However, the
+RJ45 and USB sockets were facing in the wrong direction.</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brother1.JPG" NAME="graphics2" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">I wanted the RJ45 and USB sockets to face
+out of the rear of the printer, so W decided to enlarge the existing
+blanked off aperture. Part of the router would protrude out of the
+back of the printer. </FONT>
+</P>
+<P><FONT COLOR="#000000">The sheet metal was easy to cut with a
+dremel tool fitted with a cutting disc.</FONT></P>
+<P><FONT COLOR="#000000">I couldn't remove the exposed circuit board,
+so I carefully masked off the circuit board and any gaps with 2 inch
+masking tape. Do not press down hard on the masking tape as you may
+leave adhesive residue, or even pull off the very delicate and small
+surface mounted components when you subsequently try to remove the
+tape. Then laid tissue paper on top to catch the fine grinded
+particles.</FONT></P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brother2.JPG" NAME="graphics1" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">Once I'd finished enlarging the aperture, I
+used a vacuum cleaner to suck out any particles before removing the
+masking tape. Then vacuumed again.</FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brother3.JPG" NAME="graphics3" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">Turning our attention to the TP-link travel
+routers, the later TL-WR710N and TL-WR810N have a detachable AC plug.
+The pins are slightly larger than 2.5mm diameter. I cannibalised an
+IEC C7 (also known as figure-8 AC cable) by using a junior hack saw
+to remove the hard plastic insulation around the copper contacts. I
+just carefully sawed around the circumference of the plug, and then
+down the middle between the two copper pins. The pieces then just
+pulled off very easily.</FONT></P>
+<P><FONT COLOR="#000000">I also had to carefully remove the moulded
+strain-relief using a pair of precision wire cutters. Extra care had
+to be taken to ensure the existing black PVC sheath was not severely
+damaged.</FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brother6.JPG" NAME="graphics6" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brother7.JPG" NAME="graphics7" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">The purpose of removing the moulded
+strain-relief, was to make it easy to bend the PVC sheathed cable at
+a right angle. Otherwise, the cable could touch the optional RAM
+module. A P-clip was added as show below. Alternatively, a piece of
+120x50mm duck tape could perhaps be used to secure the cable to the
+side of the router.</FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#800000"><FONT SIZE=5><B>Generally, I'm not totally
+happy with the idea of running high voltage wires so close to
+sensitive low voltage electronics. It is something you need to
+consider from a safety point of view.</B></FONT></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">Heatshrink sleeving covers the exposed
+copper terminals. I used the largest 13mm diameter heatshrink I could
+find, which I expanded to 15mm with a pair of screwdrivers, so it
+could cover the plugs where it is inserted the router power socket.</FONT></P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brother8.JPG" NAME="graphics8" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">The next step was to feed the 2 core AC
+cable from the router to printer's On/Off power switch. Fortunately,
+there is a direct path through the laser printer's power supply zone.
+See one of the openings below.</FONT></P>
+<P><FONT COLOR="#000000">The transparent electrical insulation
+plastic sheet was peeled back a bit (it cannot be totally removed)
+and cut with scissors to create an opening through it for the AC
+cable.</FONT></P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brother4.JPG" NAME="graphics4" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brother5.JPG" NAME="graphics5" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">The other opening can be seen below. It is a
+half inch round hole where white coloured wires carry high voltage
+feed to the fuser unit. I used a stiff 3mm rod fed into the round
+hole until it appeared out th other side of the power supply unit.
+Then taped the AC cable to the end of the rod and pulled the cable
+through the power supply zone.</FONT></P>
+<P><FONT COLOR="#000000">The On/Off power rocker switch can be prised
+out of its mounting, to allow the brown Live wire to soldered to the
+switched terminal on the On/Off switch. The blue Neutral wire is
+soldered to the rear of the AC power socket.</FONT></P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brotherA.JPG" NAME="graphics10" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">The AC cable actually passes down the right
+hand side of the router and loops back where it enters the opening to
+the power supply zone. The slack in the cable also makes it easier to
+remove the router.</FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brother9.JPG" NAME="graphics9" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">The router protrudes 20mm beyond the back of
+the printer. It actually touches the top edge of centronics parallel
+port. This makes it impossible to insert most parallel port plugs.
+Fortunately, the interface is not likely to be used.</FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brotherB.JPG" NAME="graphics11" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">The router is anchored to the removable
+metal cover. A pair of 12mm screws are visible below. I also used
+some double sided sticky tape.</FONT></P>
+<P>The blue coloured USB cable connects the printer to the TP-link
+router.</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brotherC.JPG" NAME="graphics12" ALIGN=BOTTOM WIDTH=640 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">The diagram below shows safe drilling zones.</FONT></P>
+<P><FONT COLOR="#000000">Some internal photos of the TL-WR710N can be
+found here</FONT></P>
+<P><A HREF="https://openwrt.org/toh/tp-link/tl-wr710n"><FONT COLOR="#000000">https://openwrt.org/toh/tp-link/tl-wr710n</FONT></A></P>
+<P><FONT COLOR="#000000">Tip: Make a simple paper template of the
+outline of the TL-WR710N, mark the pilot holes for the screws, then
+transfer the template to the metal cover. Remember to fold back the
+bottom 20mm of the paper template. Drill the holes through the metal
+cover. Then drill small pilot holes through the metal cover to the
+router's plastic case and finally use 12mm screws.</FONT></P>
+<P>There is a 3mm lip on the edge of the metal cover. I simply used
+some pliers to try and straighten it. Then used a G-clamp to act as a
+vice to flatten the edge.</P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brotherD.jpg" NAME="graphics13" ALIGN=BOTTOM WIDTH=571 HEIGHT=480 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">The final step is to install OpenWrt onto
+the TL-WR710N router. Instructions can be found here:</FONT></P>
+<P><A HREF="https://openwrt.org/toh/tp-link/tl-wr710n"><FONT COLOR="#000000">https://openwrt.org/toh/tp-link/tl-wr710n</FONT></A></P>
+<P><FONT COLOR="#ff0000"><B>Warning: </B><SPAN STYLE="font-weight: normal">Stay
+clear of the TL-WR710N</SPAN> <B>v2.0. </B><SPAN STYLE="font-weight: normal">It
+only has 4MB RAM. </SPAN><FONT COLOR="#000000"><SPAN STYLE="font-weight: normal">The
+HW version number is printed on label stuck to the router. </SPAN></FONT><FONT COLOR="#000000"><B>The
+v1.0, 1.1, 1.2 and 2.1 models have 8MB RAM.</B></FONT></FONT></P>
+<P><BR><BR>
+</P>
+<P>Recommend using the mature <B>ar71xx</B> images for the TL-WR710N
+instead of the ath79 images.</P>
+<P>Download the LEDE 17.01.6 tl-wr710n-v?-squashfs-<FONT COLOR="#ff0000"><B>factory</B></FONT>.bin
+for your hardware version from here:</P>
+<P><A HREF="https://downloads.openwrt.org/releases/17.01.6/targets/ar71xx/generic/">https://downloads.openwrt.org/releases/17.01.6/targets/ar71xx/generic/</A></P>
+<P><BR><BR>
+</P>
+<P>Download the Openwrt 19.07.4 tl-wr710n-v?-squashfs-<FONT COLOR="#ff0000"><B>sysupgrade</B></FONT>.bin
+for your hardware from here:</P>
+<P><A HREF="https://downloads.openwrt.org/releases/19.07.4/targets/ar71xx/generic/" NAME="Download page for ar71xx images">https://downloads.openwrt.org/releases/19.07.4/targets/ar71xx/generic/</A></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#ff0000"><B>Update (June 2021): </B></FONT>OpenWrt
+21.02 is available, however ar71 images are not available. I have not
+tested the ath79 images. I would suggest to just use the tried and
+tested 19.07 ar71 images. There is no real benefit to using OpenWrt
+21.02 on a print server imho.</P>
+<P><BR><BR>
+</P>
+<P STYLE="margin-left: 1.19cm; text-indent: -1.21cm; margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Here
+are the steps:</FONT></FONT></FONT></P>
+<OL>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Switch
+	on the TL-WR710N and wait 2 minutes.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Depress
+	and hold the recessed Reset button for 5 seconds. Release the button
+	when the LED starts flashing.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Connect
+	a computer to the&nbsp;LAN&nbsp;port and point a web browser to the
+	TPlink web UI at 192.168.0.254.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Enter
+	'</SPAN></SPAN></FONT></FONT></FONT><STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><B>admin</B></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">'
+	for both username and password.</SPAN></SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Navigate
+	to&nbsp;</SPAN></SPAN></FONT></FONT></FONT><STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">System
+	Tools &gt; Firmware Upgrade</SPAN></SPAN></FONT></FONT></FONT></STRONG></P>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Choose
+	the LEDE 17.01.6 squashfs-</SPAN></SPAN></FONT></FONT></FONT><STRONG><FONT COLOR="#ff0000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">f</SPAN></SPAN></FONT></FONT></FONT></STRONG><STRONG><FONT COLOR="#ff0000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><B>actory</B></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">.bin
+	image file.</SPAN></SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Click&nbsp;</SPAN></SPAN></FONT></FONT></FONT><STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><B>Upgrade</B></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#333333">&nbsp;</FONT><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">button.</SPAN></SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>After
+	about 3 minutes, point web browser to 192.168.1.1 to bring up LuCI.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; font-style: normal; font-weight: normal; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2>Log
+	in. No password required.</FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Navigate
+	to&nbsp;</SPAN></SPAN></FONT></FONT></FONT><STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">System
+	&gt; </SPAN></SPAN></FONT></FONT></FONT></STRONG><STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><B>Backup
+	/Flash firmware</B></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#333333">&nbsp;</FONT><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">menu.</SPAN></SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm; border: none; padding: 0cm; widows: 2; orphans: 2">
+	<FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Under&nbsp;</SPAN></SPAN></FONT></FONT></FONT><STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Flash
+	new image</SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#333333">&nbsp;</FONT><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">section,
+	select the OpenWrt squashfs-</SPAN></SPAN></FONT></FONT></FONT><STRONG><FONT COLOR="#ff0000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><B>sysupgrade</B></SPAN></FONT></FONT></FONT></STRONG><STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">.</SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">bin
+	image file (Do NOT use the squashfs-factory.bin file). Uncheck '</SPAN></SPAN></FONT></FONT></FONT><STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">Keep
+	Settings</SPAN></SPAN></FONT></FONT></FONT></STRONG><FONT COLOR="#333333"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">',
+	and proceed to upgrade to OpenWRT 18 or later.</SPAN></SPAN></FONT></FONT></FONT></P>
+</OL>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">After OpenWrt 19.07.x is installed, you will
+need to make the following changes. </FONT>
+</P>
+<P><FONT COLOR="#000000">Decide if you wish to assign a static IP
+address to the printer, or to use DHCP. See end of document for DHCP
+instructions.</FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000"><U><B>How to assign a static IP address</B></U></FONT></P>
+<P STYLE="margin-left: 1.04cm">Change the LAN IP address of the
+TP-link router. It should be on same subnet as your ISP facing
+router. 
+</P>
+<P STYLE="margin-left: 1.97cm">eg. If your ISP facing router's LAN IP
+address is 192.168.1.254, then change the last digit to a high number
+less than 254, such as 192.168.1.236 in example below.</P>
+<P STYLE="margin-left: 1.04cm">Configure DNS server, and gateway
+address for the LAN interface, for internet access.</P>
+<P STYLE="margin-left: 1.95cm">The Ipv4 gateway is usually the LAN IP
+address of your ISP facing wifi router. eg. 192.168.1.254</P>
+<P STYLE="margin-left: 1.95cm">The DNS server is usually the IP
+address of your ISP facing wifi router, or you can use an external
+DNS server such as Google's 8.8.8.8 server.</P>
+<P><BR><BR>
+</P>
+<P>Navigate to <B>Network &gt; Interfaces</B> menu.</P>
+<P>For the <B>LAN</B> interface, click <B>Edit </B>button.</P>
+<P STYLE="margin-left: 1.04cm"><IMG SRC="images/brotherE.jpg" NAME="graphics14" ALIGN=BOTTOM WIDTH=670 HEIGHT=284 BORDER=0></P>
+<P STYLE="margin-left: 1.04cm">Disable DHCP server (<B>This is very
+important !</B>) in the LAN interface. Otherwise, devices on your
+network may not be able to access the internet !!</P>
+<P STYLE="margin-left: 1.04cm"><IMG SRC="images/brotherF.jpg" NAME="graphics15" ALIGN=BOTTOM WIDTH=547 HEIGHT=202 BORDER=0></P>
+<P STYLE="margin-left: 1.04cm"><IMG SRC="images/brotherI.jpg" NAME="graphics16" ALIGN=BOTTOM WIDTH=434 HEIGHT=221 BORDER=0></P>
+<P STYLE="margin-left: 1.04cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 1.04cm">Delete the <B>WAN</B> and <B>WAN 6</B>
+interfaces, so you are left with just the <B>LAN</B> interface.</P>
+<P STYLE="margin-left: 1.04cm"><IMG SRC="images/brotherJ.jpg" NAME="graphics19" ALIGN=BOTTOM WIDTH=530 HEIGHT=131 BORDER=0></P>
+<P STYLE="margin-left: 0.97cm"><BR><BR>
+</P>
+<P STYLE="margin-left: 0.97cm; font-weight: normal"><FONT COLOR="#000000"><B>Optional:</B>
+For the TL-WR710N, recommend to bridge 'e<B>th0</B>' and '<B>eth1</B>'
+interfaces so both ethernet ports are enabled. (This method might not
+work for other routers)</FONT></P>
+<P STYLE="margin-left: 0.97cm"><FONT COLOR="#000000"><IMG SRC="images/brotherH.jpg" NAME="graphics18" ALIGN=BOTTOM WIDTH=490 HEIGHT=372 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">Now connect the TP-link router to your main
+network with an ethernet cable.</FONT></P>
+<P><FONT COLOR="#000000">Through the <B>System &gt; Software</B>
+menu, click on '<B>Update List</B>' </FONT>
+</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brotherM.jpg" NAME="graphics23" ALIGN=BOTTOM WIDTH=605 HEIGHT=135 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">Next install the following packages:</FONT></P>
+<P STYLE="margin-left: 0.97cm"><FONT COLOR="#000000">kmod-usb-printer</FONT></P>
+<P STYLE="margin-left: 0.97cm; font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>luci-app-p910nd</FONT></FONT>
+</FONT>
+</P>
+<P STYLE="margin-left: 0.97cm"><FONT COLOR="#000000"><IMG SRC="images/brotherN.jpg" NAME="graphics24" ALIGN=BOTTOM WIDTH=302 HEIGHT=163 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P STYLE="font-weight: normal"><FONT COLOR="#000000">Finally, tick
+the check box to 'enable' the print server.</FONT></P>
+<P STYLE="margin-left: 0.97cm"><FONT COLOR="#000000"><IMG SRC="images/brotherG.jpg" NAME="graphics17" ALIGN=BOTTOM WIDTH=469 HEIGHT=380 BORDER=0></FONT></P>
+<P STYLE="margin-left: 0.97cm"><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P STYLE="font-weight: normal"><FONT COLOR="#000000">Instructions for
+setting up network printing on computers can be found here. You will
+need to know the IP address of the TL-WR710N. eg. 192.168.1.236.</FONT></P>
+<P><A HREF="https://openwrt.org/docs/guide-user/services/print_server/p910nd.server">https://openwrt.org/docs/guide-user/services/print_server/p910nd.server</A></P>
+<P STYLE="font-weight: normal"><FONT COLOR="#000000">For Windows, the
+TCPIP port should be configured for RAW printing (aka. JetDirect).</FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000"><FONT SIZE=4><U><B>Windows 10 drivers</B></U></FONT></FONT></P>
+<P STYLE="font-weight: normal"><FONT COLOR="#000000">If you have
+difficulty installing the Brother HL-1450 printer driver using
+Windows Update, then Brother have an enhanced PCL5e driver (HL-2250)
+specifically the HL-1450 on their website on their website which
+seems to be fully compatible with the HL-1450. It is not for use for
+other lower models such as HL-1440. (I think it is because HL-1450
+comes with 4+4 MB RAM as standard and HL-1440 only ships with 2 MB,
+but can be expanded by installing a FPM or EDO SIMM)</FONT></P>
+<P STYLE="font-weight: normal"><FONT COLOR="#000000">Otherwise, you
+can find the Windows PCL and BR-script (for HL-1450/1470) drivers on
+the 'Microsoft Catalog' website. Search for your printer (eg.
+HL-1450). There may be multiple entries for the last Windows 8.1
+drivers - some of them are actually duplicates. </FONT>
+</P>
+<P STYLE="font-weight: normal"><FONT COLOR="#000000">For 32 bit
+Windows, you require the X86 driver. For 64 bit Windows, use the
+AMD64 driver. Download the driver and use WinRAR to extract the
+contents to a folder (<FONT COLOR="#ff0000">Do NOT</FONT> use windows
+explorer because it cannot recreate the folder structure correctly).
+Check the contents for a folder listed below, to confirm you have the
+right version.</FONT></P>
+<P STYLE="margin-left: 1.23cm; font-weight: normal"><FONT COLOR="#000000">i386
+&ndash; this is the Windows 32 bit version</FONT></P>
+<P STYLE="margin-left: 1.23cm; font-weight: normal"><FONT COLOR="#000000">AMD
+&ndash; this is the Windows 64 bit version</FONT></P>
+<P STYLE="font-weight: normal"><FONT COLOR="#000000">There will be an
+.inf file. You can right mouse click and 'install' the driver pack.
+Once the driver pack is installed, try again and set up the new
+network printer. Your printer should be listed under 'Brother'.</FONT></P>
+<P>There are also old OS X BR-script drivers for macs on Brother
+website for the HL-1450. I have found the latest driver, despite its
+age, works with macOS High Sierra. 
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><FONT SIZE=4><U><B>Wireless printing</B></U></FONT></P>
+<P>You may ask can the wireless on the TP-link router be used to
+connect to a wifi network. ie. Create a wireless printer?</P>
+<P>The answer is 'Yes' in theory. However, in practise, you may find
+the wifi connection is severely degraded, because more than
+two-thirds of the TP-link router is shielded by the metal chassis of
+the laser printer. I don't recommend it.</P>
+<P>Personally, I would always opt for reliable ethernet connection
+every time, rather than use wifi connection for printing.</P>
+<P><BR><BR>
+</P>
+<P>Can an android or IOS device print to this HL-1450 printer? Simple
+answer is No. There is no support for mobile devices. If you have a
+Chromebook with latest ChromeOS, there is native support for printers
+following the end to Cloud printing support. If you find the HL-1450
+driver does not work, try the generic PCL5e driver.</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><U><B>How to configure DHCP</B></U></P>
+<P STYLE="font-weight: normal">This has been included for
+completeness only. I would recommend to use static address on the
+TL-wr710n as described earlier in this page.</P>
+<P><BR><BR>
+</P>
+<P><B>Warning: </B>If you choose to use DHCP, you will need to know
+how to discover the IP address allocated by your router to the
+TL-wr710n. 
+</P>
+<P>If the IP address allocated to the TL-WR710n changes for any
+reason, <FONT COLOR="#ff0000"><B>your devices will NOT be able to
+print</B></FONT> to the Brother laser printer. For this reason, you
+should configure your router to provide a static IP address to the
+TL-wr710n.</P>
+<P><BR><BR>
+</P>
+<P>Navigate to <B>Network &gt; Interfaces</B> menu.</P>
+<P>For the <B>LAN</B> interface, click <B>Edit </B>button.</P>
+<P>Change the <B>Protocol</B> to '<B>DHCP client</B>'.</P>
+<P>Click on <B>Switch Protocol</B></P>
+<P><IMG SRC="images/brotherK.jpg" NAME="graphics26" ALIGN=BOTTOM WIDTH=454 HEIGHT=366 BORDER=0></P>
+<P>You can enter a <B>Hostname</B>.</P>
+<P><IMG SRC="images/brotherL.JPG" NAME="graphics25" ALIGN=BOTTOM WIDTH=454 HEIGHT=367 BORDER=0></P>
+<P>Now press <B>Save</B> and <B>Save &amp; Apply</B> buttons for the
+changes to take effect.</P>
+<P><BR><BR>
+</P>
+<P>To discover the IP address assigned to the TL-wr710n by your
+router, log into your router and navigate to the web page which lists
+currently assigned DHCP devices. Look for the device which matches
+the MAC address (eg. 10:FE:ED.....) as shown in the above example if
+you cannot find the Hostname you had entered earlier.</P>
+<P>While logged into your router, you should configure it to supply a
+fixed IP address to the TL-wr710n using its MAC address.</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><FONT SIZE=4><U><B>My other web pages</B></U></FONT></P>
+<P><A HREF="http://logikir100.tripod.com/X-530tamebass.htm">Logitech
+X-530 subwoofer - tame the bass</A></P>
+<P><A HREF="https://logikir100.tripod.com/FlightSimSwitchPanel.html">DIY
+flaps control/switch panel for Flight Simulator</A></P>
+<P><A HREF="https://logikir100.tripod.com/SonySRS-D25.htm">Sony
+SRS-D25 subwoofer &ndash; fix for hum/buzz</A></P>
+<P><A NAME="Sony SRS-D25 subwoofer - fix for hum/buzz"></A><A HREF="https://logikir100.tripod.com/SonySRS-D25.htm" NAME="Sony SRS-D25 subwoofer - fix for hum/buzz"><IMG SRC="images/srsd25-6.jpg" NAME="graphics21" ALIGN=BOTTOM WIDTH=265 HEIGHT=201 BORDER=0></A></P>
+<P><BR><BR>
+</P>
+<P><A NAME="Pioneer DV-600 (DV-300, DV-400, DV-500) playeer - power supply board repair"></A>
+<BR><BR>
+</P>
+</BODY>
+</HTML>
