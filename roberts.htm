@@ -1,0 +1,719 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>Roberts Stream 83i Internet Radio</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.4.1  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20250613;8401395">
+	<META NAME="KEYWORDS" CONTENT="My Roberts Stream 83i internet radio resource page Frontier Silicon">
+	<META NAME="ProgId" CONTENT="FrontPage.Editor.Document">
+	<META HTTP-EQUIV="Content-Language" CONTENT="en-gb">
+	<STYLE TYPE="text/css">
+	<!--
+		H2.cjk { font-family: "SimSun" }
+		H2.ctl { font-family: "Mangal" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-GB" DIR="LTR">
+<P STYLE="border-top: none; border-bottom: 1.10pt double #808080; border-left: none; border-right: none; padding-top: 0cm; padding-bottom: 0.05cm; padding-left: 0cm; padding-right: 0cm">
+<BR><BR>
+</P>
+<HR>
+<P><FONT FACE="Arial"><FONT SIZE=6><B>My Roberts Stream 83i Internet
+Radio Resource page</B></FONT></FONT></P>
+<P>First created 27 April 2011. With Disassembly/Dismantling
+instructions</P>
+<P>Last edited <FONT COLOR="#ff0000">14 Jan 2020 </FONT><FONT COLOR="#000000">&ndash;
+My radio developed a fault with its Volume control &ndash; it has to
+be turned VERY slowly to operate. Additional Disassembly pictures
+added. I'm hoping to find a replace rotary encoder for it</FONT></P>
+<P>&nbsp;</P>
+<P>I won't bore you with the details as the <A HREF="http://www.robertsradio.co.uk/Products/Internet_radios/STREAM83i/index.htm">Roberts
+Stream 83i</A> has been on the market since the end of 2009 in the
+UK.&nbsp; There should be plenty of reviews for this product.&nbsp;
+This radio is based on a Frontier Silicon internet radio chipset.&nbsp;
+The <A HREF="http://www.pure.com/products/product.asp?Product=VL-60896">Pure
+Evoke Flow</A> was probably its direct competitor in the UK at the
+time.</P>
+<P>The Stream 83i is supplied with a slim remote control, mains power
+adapter, and the radio supports both wifi and wired ethernet.&nbsp; 
+</P>
+<P>&nbsp;</P>
+<P>The new Roberts was purchased in 2011 to replace the 4.5 years old
+<A HREF="Logik.htm">Logik IR100</A> which has served us well but had
+developed two faults (fading display and temperamental rotary
+encoder).&nbsp; It will be used for listening to a number of live
+internet radio stations.&nbsp; The five front panel mounted memory
+preset buttons were one of the reasons for choosing this radio above
+other models as it would be used in the kitchen.</P>
+<P><IMG SRC="images/roberts01.jpg" NAME="graphics1" ALIGN=BOTTOM WIDTH=994 HEIGHT=485 BORDER=0></P>
+<P>The Roberts is more neutral sounding unlike the brighter sounding
+Logik IR100.&nbsp; The larger mono speaker and huge bass reflex port
+on the back of the Logik does give the Logik more punch and ability
+to fill a large room.&nbsp; This is not to suggest the Roberts is
+poor, in fact it is very good.&nbsp; Unlike the Logik, the Roberts
+does offer some ability to adjust the bass and treble to your taste
+if you don't like the half a dozen preset equaliser settings on
+offer.</P>
+<P>&nbsp;</P>
+<P>It is unknown who is the actual OEM for the Stream 83i.&nbsp;&nbsp;&nbsp;
+Roberts have historically offered rebadged radios manufactured by
+<A HREF="http://www.sangean.com/">Sangean</A>.</P>
+<P>&nbsp;</P>
+<P><IMG SRC="images/roberts02.jpg" NAME="graphics2" ALIGN=BOTTOM WIDTH=1024 HEIGHT=768 BORDER=0></P>
+<P>The backlit LCD display should be a far darker blue in colour than
+the above photograph suggests. 
+</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<HR>
+<H2 CLASS="western">Not best for BBC On Demand</H2>
+<P>&nbsp;</P>
+<P>This radio, like many other internet radios, does not support
+transport controls for BBC On Demand WMA content.&nbsp; ie. you
+cannot Pause, Rewind or Fast Forward to a particular time index
+within a particular BBC Listen-Again programme.&nbsp; 
+</P>
+<P>If your internet or wireless connection is interrupted for any
+reason while you are listening to an On-Demand programme, it will
+cause the radio to halt, and perhaps commence play back from the
+start of the programme.&nbsp;&nbsp; 
+</P>
+<P>&nbsp;&nbsp;</P>
+<HR>
+<H2 CLASS="western">Alternative Remote Controller</H2>
+<P>&nbsp;</P>
+<P>The Stream 83i remote is nicely made and actually feels very
+weighty.&nbsp; Unfortunately, I personally find the membrane buttons
+on the remote to be very difficult to depress unlike other membrane
+remotes I have used.</P>
+<P>At the time of writing, I've had no success to getting any of my
+universal learning remotes to operate this radio.&nbsp;&nbsp; The
+<A HREF="VistronSRM403E.htm">SRM-403E</A> does not recognise the IR
+codes emitted by the slim remote.&nbsp; My OneForAll learning remotes
+appear to be able to learn the codes emitted by the Roberts remote,
+but are unable to use the learned codes to remote control the
+Roberts.&nbsp; Puzzling....</P>
+<P><FONT COLOR="#ff0000">(Update)</FONT>&nbsp; However, I was
+successfully able to use the extracted EFC data shown below, to
+create a new device setup code, which I subsequently uploaded to my
+URC-7556 OFA universal remote.&nbsp; It was able to successfully
+remote operate the Stream 83i.</P>
+<P>&nbsp;</P>
+<P>Learned IR code data extracted using via the JP1.2 serial cable
+connected to <A HREF="VistronURC7555.htm">URC-7555</A> learning
+remote:</P>
+<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=98>
+	<COL WIDTH=98>
+	<COL WIDTH=98>
+	<COL WIDTH=64>
+	<TR>
+		<TD ROWSPAN=25>
+			<P STYLE="border: none; padding: 0cm; text-decoration: none"><IMG SRC="images/roberts03.jpg" NAME="graphics3" ALIGN=BOTTOM WIDTH=246 HEIGHT=599 BORDER=0></P>
+		</TD>
+		<TD></TD>
+		<TD COLSPAN=2>
+			<P STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2><U>Roberts Stream 83i remote</U></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=80>
+			<P STYLE="border: none; padding: 0cm; text-decoration: none">&nbsp;</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Protocol:&nbsp; NECx1</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P STYLE="border: none; padding: 0cm; text-decoration: none">&nbsp;</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Device: 136</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P STYLE="border: none; padding: 0cm; text-decoration: none">&nbsp;</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Sub device: 136</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P STYLE="border: none; padding: 0cm; text-decoration: none">&nbsp;</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=80>
+			<P STYLE="border: none; padding: 0cm; text-decoration: none">&nbsp;</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal">
+			<FONT FACE="Arial"><FONT SIZE=2><U>Function</U></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal">
+			<FONT FACE="Arial"><FONT SIZE=2><U>EFC</U></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Power</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>205</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>1</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>244</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>2</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>116</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>3</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>052</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>4</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>180</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>5</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>123</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Mode</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>059</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Info</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>187</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Menu</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>247</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Love</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>213</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Ban</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>197</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Select/Snooze</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>246</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Up</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>250</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Left</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>058</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Right</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>186</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Down</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>122</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Vol-</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>184</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=147></TD>
+		<TD WIDTH=147>
+			<P ALIGN=CENTER STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>Vol+</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=80>
+			<P ALIGN=RIGHT STYLE="border: none; padding: 0cm; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT FACE="Arial"><FONT SIZE=2>056</FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P>&nbsp;</P>
+<P>I've not yet found a OneForAll device setup code which can emulate
+NECx1 protocol with device/sub-device 136/136, so it looks like it
+will not be possible to use a generic OFA universal remote with Key
+Magic to operate the Stream 83i.</P>
+<P>&nbsp;</P>
+<P STYLE="border-top: none; border-bottom: 1.10pt double #808080; border-left: none; border-right: none; padding-top: 0cm; padding-bottom: 0.05cm; padding-left: 0cm; padding-right: 0cm">
+&nbsp;</P>
+<H2 CLASS="western">Random Freezing and Rebooting</H2>
+<P><FONT COLOR="#ff0000">(Added 17 Sep 11)</FONT></P>
+<P>One of the first things I tested when I got the radio, was to see
+how it behaved if the internet connection was interrupted while
+listening to a station.</P>
+<P>When I momentarily disconnected the ADSL cable from my router,
+causing an interruption to the internet connection, the radio would
+in most cases, eventually re-establish a connection to the radio. On
+other occasions, the radio would just stop and fail to reconnect (In
+particularly with Real Audio streams). The radio also completely
+froze on one occasion when I disconnected the ADSL cable &ndash; I
+had to completely power off the radio at the mains wall socket to
+resolve the problem.</P>
+<P>It is evident the radio doesn't always tolerate a 'less than
+perfect' internet connection. A disruption or weak wifi signal
+between the router and the radio may cause similar problems.</P>
+<P><BR><BR>
+</P>
+<P>I have read if the radio spontaneously reboots for no obvious
+reason, you should change the Software Updates setting so it does not
+check automatically for firmware updates. 
+</P>
+<P><BR><BR>
+</P>
+<HR>
+<H2 CLASS="western">Wireless signal strength doubts</H2>
+<P><BR><BR>
+</P>
+<P>Compared to my collection of older Reciva based internet radios,
+I'd have to say the wireless on the Roberts is slightly inferior to
+the Logik IR100 it replaced, when positioned in exactly the same
+location in the kitchen.</P>
+<P>The aerial on the back of the Roberts is only used for FM/DAB
+reception.</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<HR>
+<H2 CLASS="western">Firmware Versions</H2>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=5 CELLSPACING=4>
+	<COL WIDTH=121*>
+	<COL WIDTH=26*>
+	<COL WIDTH=108*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=47%>
+			<P><FONT FACE="Arial"><FONT SIZE=2>ir-mmi-FS2026-0200-0048_STR83iau_V2.0.16.25756-1B13</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=10%>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=42%>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=47%>
+			<P><FONT FACE="Arial"><FONT SIZE=2>ir-mmi-FS2026-0200-0048_STR83iau_V2.0.21.33366-1B16</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=10%>
+			<P><FONT FACE="Arial"><FONT SIZE=2 STYLE="font-size: 9pt">3 Mar
+			2011</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=42%>
+			<P><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Fixes
+			BBC internet radio stations stream problem.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=47%>
+			<P><FONT FACE="Arial, sans-serif"><FONT SIZE=2>ir-mmi-FS2026-0200-0048_STR83iau_V2.214EX15384-V1.09</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=10%>
+			<P><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">18
+			Nov 2011</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=42%>
+			<P><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Display
+			meta data from some audio stream providers. Adds UPnP support.
+			Adds Roberts ConnectR support. Adds other menu languages. </FONT></FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=47%>
+			<P><FONT FACE="Arial, sans-serif"><FONT SIZE=2>ir-mmi-FS2026-0200-0048_STR83iau_V2.2.14EX15384-V1.10</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=10%>
+			<P><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">24
+			Nov 2011</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=42%>
+			<P><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Fixes
+			loud pop when in FM mode when switching on radio</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=47%>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=10%>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=42%>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P>&nbsp;</P>
+<HR>
+<H2 CLASS="western">Manufacture Date</H2>
+<P>&nbsp;</P>
+<P>This is by no means conclusive, but I think the first 5 digits of
+the serial number found on the small label attached to the rear of
+the radio, and on the original packaging just below the bar code, may
+perhaps reveal when the radio was manufactured or is used to indicate
+which firmware is installed at the factory.&nbsp; Of the two radios I
+have seen, the radios have serial numbers commencing: 
+</P>
+<P>&nbsp;</P>
+<P><FONT FACE="Arial">N1010</FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+October 2010 ? with factory installed v2.0.16.25756-1B13 firmware</P>
+<P><FONT FACE="Arial">N0311</FONT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+March 2011 ? with&nbsp; factory installed v2.0.21.33366-1B16 firmware</P>
+<P>&nbsp;</P>
+<P>I was probably just unlucky, but the first radio I received with
+serial number beginning N0311 had a minor audio amplifier fault.&nbsp;
+It was replaced by the retailer with a radio from an older batch,
+beginning N1010.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<HR>
+<H2 CLASS="western">Mains Power Adapter</H2>
+<P>&nbsp;</P>
+<P>The Stream 83i is supplied with a typical UK 3 pin switched-mode
+mains power adapter.&nbsp;&nbsp; 
+</P>
+<P>It is rated at 12v @ 1.5A DC output for operating at 230V AC
+input.&nbsp;&nbsp; 
+</P>
+<P>The standard barrel plug is 5.5mm outer diameter/2.5mm inner
+diameter with centre positive polarity.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<HR>
+<H2 CLASS="western">Internal Pictures</H2>
+<P><BR><BR>
+</P>
+<P><IMG SRC="images/roberts04.jpg" NAME="graphics4" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><IMG SRC="images/roberts05.jpg" NAME="graphics5" ALIGN=BOTTOM WIDTH=284 HEIGHT=256 BORDER=0>
+<IMG SRC="images/roberts06.jpg" NAME="graphics6" ALIGN=BOTTOM WIDTH=472 HEIGHT=250 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P><IMG SRC="images/roberts08.jpg" NAME="graphics8" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><IMG SRC="images/roberts09.jpg" NAME="graphics9" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Picture of the inside of the rear panel showing the subwoofer.</P>
+<P><IMG SRC="images/roberts10.jpg" NAME="graphics7" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Further disassembly is as follows.</P>
+<P>Unscrew the aerial connector and unplug the subwoofer loudspeaker
+cable from the circuit board.</P>
+<P>Remove the two screws shown below. The MDF carcase can be lifted
+off the main front panel &amp; sub-chassis.</P>
+<P><IMG SRC="images/robertsA1.JPG" NAME="graphics10" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Remove the 10 small screws around the edge of the front
+panel/sub-chassis.</P>
+<P>There are 2 hidden screws behind the large aluminium heatsink as
+shown below. To access them, remove the 2 screws and insulating
+bushes securing the heatsink to the rear side of the sub-chassis.
+This will enable you to move the PCB to one side to reach the hidden
+screws.</P>
+<P><IMG SRC="images/robertsB2.JPG" NAME="graphics19" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P>The front panel can now be split from the sub-chassis.</P>
+<P><BR><BR>
+</P>
+<P>Rear of front panel. The metal shielded Frontier Silicon module
+sits above a larger circuit board.</P>
+<P><IMG SRC="images/robertsA2.JPG" NAME="graphics11" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P><IMG SRC="images/robertsA3.JPG" NAME="graphics12" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Note the two connectors below on the sub-chassis below.</P>
+<P><B>Warning: </B>On re-assembly, make sure the connectors line up
+otherwise the radio will not power. In my case with a misaligned
+connection, the 5 volts rail 'appeared' to be dead. (12v and 3.3v
+were live). Fortunately, there was no damage when I corrected the
+error.</P>
+<P><IMG SRC="images/robertsA4.JPG" NAME="graphics13" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P><IMG SRC="images/robertsA5.JPG" NAME="graphics14" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P><IMG SRC="images/robertsA6.JPG" NAME="graphics15" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P><IMG SRC="images/robertsA7.JPG" NAME="graphics16" ALIGN=BOTTOM WIDTH=520 HEIGHT=302 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Volume control rotary encoder:</P>
+<P><IMG SRC="images/robertsA8.JPG" NAME="graphics17" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Tuning control rotary encoder with push switch. Slightly different
+construction to Volume rotary encoder.</P>
+<P><IMG SRC="images/robertsA9.JPG" NAME="graphics18" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><U><B>Volume Encoder information</B></U></P>
+<P>The original rotary encoder looks very 'similar' in construction
+to current Alps Alpine EC11 series. 
+</P>
+<P>It has 20 detents. Overall height from PCB to tip of encoder is
+about 22mm.</P>
+<P>Alps do not list a 20 pulse or 20 detent encoder in their current
+catalogues.</P>
+<P>I did find a link with some photos and engineering drawing for a
+STEC11B13 20 pulse/20 detent Alps encoder, drawings dated 1998 !</P>
+<P><A HREF="https://www.reichelt.com/de/en/alps-stec11b-rotary-pulse-encoder-20-20-vert-w-pb-stec11b13-p73916.html?ARTICLE=73916&amp;&amp;r=1">https://www.reichelt.com/de/en/alps-stec11b-rotary-pulse-encoder-20-20-vert-w-pb-stec11b13-p73916.html?ARTICLE=73916&amp;&amp;r=1</A></P>
+<P>The current EC11 series feature same metal shaft but features
+<B>double</B> the number of detents for each pulse count. I'm unclear
+of the significance of detents vs pulses per revolution.</P>
+<P>The EC12 series has plastic shaft with equal detent and pulse
+counts.</P>
+<P>On the assumption the original encoder has 20 detents and pulses
+per revolution, I have ordered a 25mm long EC12 encoder off eBay to
+try, part no. <FONT COLOR="#333333"><FONT FACE="Helvetica neue, Helvetica, Verdana, sans-serif"><FONT SIZE=3 STYLE="font-size: 13pt"><SPAN STYLE="font-style: normal"><B>EC12E24204A9</B></SPAN></FONT></FONT></FONT>
+</P>
+<P><BR><BR>
+</P>
+<P>I can confirm the encoder was faulty and the replacement Alps
+encoder is working, but on initial testing, I discovered the <B>Volume
+operation was reversed.</B> eg. Turning Volume knob clockwise
+'reduced' the volume.</P>
+<P>To rectify this issue, the two outer most pin connections to the
+encoder have to be transposed. (The centre pin is Ground)</P>
+<P>Before:</P>
+<P><IMG SRC="images/robertsA8.JPG" NAME="graphics23" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>After:</P>
+<P><IMG SRC="images/robertsB3.JPG" NAME="graphics20" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>As mentioned earlier. When it comes to re-assembly, it is
+virtually impossible to align the front panel to the sub-chassis.
+Remove the two mini PCBs before starting re-assembly. Then refit them
+ensuring the DIL connectors are aligned.</P>
+<P><IMG SRC="images/robertsB4.JPG" NAME="graphics21" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Here is photo of old Alps encoder. Looking on google, it is
+possible to dismantle it, clean, lubricate and re-assembly. The whole
+prospect seemed daunting and I wasn't convinced I could re-assemble
+to as good as factory standards.</P>
+<P><IMG SRC="images/robertsB5.JPG" NAME="graphics22" ALIGN=BOTTOM WIDTH=520 HEIGHT=389 BORDER=0></P>
+<P>The original encoder is 22mm tall. The new encoder is 25mm tall. I
+did NOT have to reduce the length of shaft of the new encoder.</P>
+<P><BR><BR>
+</P>
+<HR>
+<H2 CLASS="western">Other information</H2>
+<P>&nbsp;</P>
+<P>iradioforum.net is the only <A HREF="http://iradioforum.net/forum/index.php?board=45.0">forum</A>
+I have found which appears to supports users of the Roberts Stream
+radios.&nbsp; 
+</P>
+<P>&nbsp;&nbsp;</P>
+<HR>
+<H2 CLASS="western">Other web pages</H2>
+<P><A HREF="http://logikir100.tripod.com/Logik.htm">My Logik IR100
+Resource page</A></P>
+<P><A HREF="http://logikir100.tripod.com/BrotherHL1450ethernetmod.htm">My
+Brother HL-1450 laser printer &ndash; adding an ethernet port</A></P>
+<P><A HREF="http://logikir100.tripod.com/X-530tamebass.htm">Logitech
+X-530 subwoofer &ndash; tame the bass</A></P>
+<P><A HREF="https://logikir100.tripod.com/FlightSimSwitchPanel.html">DIY
+flaps control/switch panel for Flight Simulator</A></P>
+<P><A HREF="https://logikir100.tripod.com/TurnIndicator.html">Low
+cost DIY Turn Indicator for Euro Truck Simulator 2</A></P>
+<P><BR><BR>
+</P>
+<P><A HREF="https://logikir100.tripod.com/SonySRS-D25.htm">Sony
+SRS-D25 subwoofer &ndash; fix for hum/buzz</A></P>
+<P><A NAME="Sony SRS-D25 subwoofer - fix for hum/buzz"></A><A HREF="https://logikir100.tripod.com/SonySRS-D25.htm" NAME="Sony SRS-D25 subwoofer - fix for hum/buzz"><IMG SRC="images/srsd25-6.jpg" NAME="graphics24" ALIGN=BOTTOM WIDTH=265 HEIGHT=198 BORDER=0></A></P>
+<P><A HREF="https://logikir100.tripod.com/PioneerDV600.html">Pioneer
+DV600av (DV300, DV400, DV500) Power Supply Repair</A></P>
+<P><A NAME="Pioneer DV600av (DV300, DV400, DV500) Power Supply Repair"></A>
+<A HREF="https://logikir100.tripod.com/PioneerDV600.html" NAME="Pioneer DV600av (DV300, DV400, DV500) Power Supply Repair"><IMG SRC="images/dv600a.jpg" NAME="graphics25" ALIGN=BOTTOM WIDTH=265 HEIGHT=198 BORDER=0></A></P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

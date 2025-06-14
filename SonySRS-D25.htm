@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>Sony SRS-D25 subwoofer Hum fix</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.4.1  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20250612;11265463">
+	<META NAME="KEYWORDS" CONTENT="Sony SRS-D25 subwoofer Hum buzz power supply fix mod diy">
+	<META NAME="ProgId" CONTENT="FrontPage.Editor.Document">
+	<META HTTP-EQUIV="Content-Language" CONTENT="en-gb">
+</HEAD>
+<BODY LANG="en-GB" DIR="LTR">
+<P STYLE="border-top: none; border-bottom: 1.10pt double #808080; border-left: none; border-right: none; padding-top: 0cm; padding-bottom: 0.05cm; padding-left: 0cm; padding-right: 0cm">
+<BR><BR>
+</P>
+<HR>
+<P><FONT FACE="Arial"><FONT SIZE=6><B>Sony SRS-D25 subwoofer &ndash;
+fix for hum/buzz</B></FONT></FONT></P>
+<P>First created 19 January 2022.</P>
+<P><IMG SRC="images/srsd25-7.jpg" NAME="graphics20" ALIGN=BOTTOM WIDTH=388 HEIGHT=289 BORDER=0></P>
+<P>I've owned this Sony 2.1 subwoofer PC speaker system since 2007.
+In recent years, it had developed a background mains hum. Adjusting
+the volume control does not affect the volume of the hum.</P>
+<P>It was likely to be a bad capacitor issue given its age.</P>
+<P>The main unit was easy to dismantle by first removing the 6
+recessed screws. The front panel can then be separated. Remember to
+unplug the blue ended ribbon cable to improve access.</P>
+<P><IMG SRC="images/srsd25-1.jpg" NAME="graphics2" ALIGN=BOTTOM WIDTH=388 HEIGHT=289 BORDER=0></P>
+<P>The power amplifier board is clearly visible. Visual inspection
+does not reveal any bulging or leaking electrolytic capacitors.</P>
+<P><IMG SRC="images/srsd25-4.jpg" NAME="graphics1" ALIGN=BOTTOM WIDTH=388 HEIGHT=289 BORDER=0></P>
+<P>Unfortunately, the board cannot be removed because the audio leads
+passing through the rear of the case are hot glued in place !</P>
+<P><IMG SRC="images/srsd25-3.jpg" NAME="graphics3" ALIGN=BOTTOM WIDTH=388 HEIGHT=289 BORDER=0></P>
+<P>I didn't like the idea of trying to remove the glue or cut all the
+audio leads to extract the power amplifier board.</P>
+<P>The 11.4v AC secondary winding from the transformer is connected
+to the circuit board shown below. I measured 13.5v AC across the blue
+wires into the PCB. The bridge rectifier visible next to the 2 pin
+socket suggests the board requires a regulated 16-19v DC supply.</P>
+<P><IMG SRC="images/srsd25-2.jpg" NAME="graphics4" ALIGN=BOTTOM WIDTH=388 HEIGHT=289 BORDER=0></P>
+<P>I connected a bench power supply to the PCB and the hum
+immediately disappeared. The SRS-D25 was able to operate down to 11v
+DC. It cut out just above 10v DC.</P>
+<P>I decided to bypass the existing transformer and simply power the
+SRS-D25 from a new external DC power adapter. I didn't have any spare
+15-20v DC power adapter, so I used an 'off the shelf' 12v @ 2A
+switched mode power adapter.</P>
+<P>I cut the primary and secondary leads off the transformer and
+joined them together. Then installed the modified lead into the
+SRS-D25.</P>
+<P><IMG SRC="images/srsd25-5.jpg" NAME="graphics5" ALIGN=BOTTOM WIDTH=388 HEIGHT=289 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Finally, I cut the AC mains plug off the end of the cable and
+fitted a female barrel connector for the new external 12v DC power
+adapter.</P>
+<P><IMG SRC="images/srsd25-6.jpg" NAME="graphics6" ALIGN=BOTTOM WIDTH=388 HEIGHT=289 BORDER=0></P>
+<P>At normal listening volume levels, audio seems fine. When I wind
+the volume up to unacceptable levels, I haven't noticed any audio
+'clipping'.</P>
+<P>I also measured the DC voltage across the main subwoofer unit. At
+18v, I measured 50-60mV. For 12v, there was only 32-40mV. ie.
+Negligible DC bias.</P>
+<P><BR><BR>
+</P>
+<P>Some notebook 19v power adapters from around 10 years ago didn't
+have a 3<SUP>rd</SUP> 'sense/data pin. I may try and find a discarded
+one to use with the SRS-D25. Toshiba used 19v power adapters with
+regular 2.5 x 5.5mm barrel plugs. In the mean time, the 12v power
+adapter seems to work just fine.</P>
+<P>I've also observed when the SRS-D25 is plugged into my Dell
+laptop, there is a very high pitch buzz or chirp when the volume
+control on the SRS-D25 is at Maximum setting. There is no noise when
+the audio cable is unplugged from the laptop. 
+</P>
+<P>I tested 5 different 12v power adapters &ndash; 3x 2Amp
+plug-in-wall, and 2x 5Amp brick style. Three adapters produced a
+noise. For one particular plug-in-wall adapter, the noise got louder
+when I placed my hand on it or if I brought the adapter closer to the
+laptop. Two other plug-in-wall adapters were silent.</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P>I have discovered this video which shows the PCB can be partially
+removed.</P>
+<P><A HREF="https://youtu.be/kKBHJTYcp3M">Non-English Youtube video
+showing inside of SRS-D25</A></P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><FONT SIZE=4><U><B>My other web pages</B></U></FONT></P>
+<P><A HREF="http://logikir100.tripod.com/X-530tamebass.htm">Logitech
+X-530 subwoofer - tame the bass</A></P>
+<P><A HREF="https://logikir100.tripod.com/FlightSimSwitchPanel.html">DIY
+flaps control/switch panel for Flight Simulator</A></P>
+<P><A HREF="https://logikir100.tripod.com/BrotherHL1450ethernetmod.htm">Brother
+HL-1450 laser printer &ndash; adding an ethernet port</A></P>
+<P><A HREF="https://logikir100.tripod.com/roberts.htm">Roberts Stream
+83i internet radio resource page</A></P>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>
