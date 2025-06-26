@@ -5,7 +5,7 @@
 	<TITLE>Brother HL-1450 laser printer - adding ethernet port</TITLE>
 	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.4.1  (Win32)">
 	<META NAME="CREATED" CONTENT="0;0">
-	<META NAME="CHANGED" CONTENT="20250626;7290015">
+	<META NAME="CHANGED" CONTENT="20250626;7404629">
 	<META NAME="KEYWORDS" CONTENT="Brother HL-1450 HL-1440 HL-1250 HL-1430 wifi wireless ethernet print server ethernet port openwrt TL-WR710N">
 	<META NAME="ProgId" CONTENT="FrontPage.Editor.Document">
 	<META HTTP-EQUIV="Content-Language" CONTENT="en-gb">
@@ -535,13 +535,23 @@ fixed IP address to the TL-wr710n using its MAC address.</P>
 <P><BR><BR>
 </P>
 <P><FONT SIZE=4><U><B>Configuring TL-wr710n for wireless connection</B></U></FONT></P>
+<P>I was given an old Brother HL-2030 laser printer. I planned to fit
+a TL-wr710n into the printer but quickly realised it was not going to
+be easy to route the AC cable through the router from its power
+switch to the other wide of the printer where there was space for the
+TP-link router.  I decided to use the router externally, and opted
+for wireless connection.</P>
 <P><BR><BR>
 </P>
-<P>Flash the router with OpenWrt files as described earlier.</P>
+<P>Flash the router with the two OpenWrt files as described earlier.</P>
+<P><BR><BR>
+</P>
 <P>Navigate to <B>Network &gt; Interfaces</B> menu.</P>
 <P>For the <B>LAN</B> interface, click <B>Edit </B>button.</P>
-<P>Change the IP subnet to one which is not in use.</P>
-<P>ie. change default 192.168.1.1 to 192.168.<FONT COLOR="#ff0000">111</FONT>.1
+<P>Change the IP subnet to one which is <B>not</B> in use anywhere
+else.</P>
+<P>eg. change default 192.168.<FONT COLOR="#ff0000">1</FONT>.1 to
+192.168.<FONT COLOR="#ff0000">111</FONT>.1 
 </P>
 <P><IMG SRC="images/brother21.jpg" NAME="graphics21" ALIGN=MIDDLE WIDTH=369 HEIGHT=274 BORDER=0></P>
 <P>Save &amp; Apply changes.</P>
@@ -574,9 +584,10 @@ shown below.</P>
 <P><BR><BR>
 </P>
 <P>If the router successfully connects to your wifi, you should see a
-valid Ipv4 address as shown below.</P>
+valid Ipv4 address as shown below provided by your wifi network
+router.</P>
 <P>My wifi network uses 192.168.10.x subnet btw.</P>
-<P>Check internet access is working.</P>
+<P>Check internet access is working before proceeding any further.</P>
 <P><IMG SRC="images/brother28.jpg" NAME="graphics32" ALIGN=MIDDLE WIDTH=639 HEIGHT=177 BORDER=0></P>
 <P><BR><BR>
 </P>
@@ -597,7 +608,7 @@ button</P>
 IP address on your wifi network. 
 </P>
 <P>In this example, my wifi network uses 192.168.<FONT COLOR="#ff0000">10</FONT>.x
-range, and I have chose 192.168.<FONT COLOR="#ff0000">10.226 </FONT><FONT COLOR="#000000">for
+range, and I have chosen 192.168.<FONT COLOR="#ff0000">10.226 </FONT><FONT COLOR="#000000">for
 the router.</FONT></P>
 <P><FONT COLOR="#000000">For IPv4 gateway, enter the LAN IP address
 of your wifi router.</FONT></P>
@@ -607,11 +618,16 @@ of your wifi router.</FONT></P>
 </P>
 <P>Press Save &amp; Apply.</P>
 <P><IMG SRC="images/brother31.jpg" NAME="graphics35" ALIGN=MIDDLE WIDTH=774 HEIGHT=180 BORDER=0></P>
-<P>Check internet connection is working.</P>
+<P>Check internet connection is working. If there is no connection,
+please check the values you entered.</P>
+<P><BR><BR>
+</P>
 <P>You can also check router is connected to your wifi network, by
 navigating to  Status &gt; Overview page</P>
 <P>An incrementing 'Connected' time indicates a wifi connection
-exists.</P>
+exists.  BUT, this is not a guarantee you can access the internet if
+you have specified invalid WWAN IP address, gateway and DNS server
+settings.</P>
 <P><IMG SRC="images/brother32.jpg" NAME="graphics36" ALIGN=TEXTTOP WIDTH=505 HEIGHT=227 BORDER=0></P>
 <P><BR><BR>
 </P>
@@ -624,8 +640,8 @@ we need to add a Port Forwarding rule to the firewall.</P>
 <P>Press Save.</P>
 <P><BR><BR>
 </P>
-<P>To be able to print from WWAN to LAN, we need to add the following
-rule too.</P>
+<P>To be able to print to the WWAN IP address, we need to add the
+following rule too.</P>
 <P><IMG SRC="images/brother34.jpg" NAME="graphics38" ALIGN=TEXTTOP WIDTH=460 HEIGHT=369 BORDER=0></P>
 <P><BR><BR>
 </P>
@@ -635,8 +651,8 @@ rule too.</P>
 <P>Press Save &amp; Apply.</P>
 <P><BR><BR>
 </P>
-<P>Now to install the print server. Instructions below are reproduced
-below.</P>
+<P>Now to install the print server. Earlier instructions are
+replicated below.</P>
 <P><FONT COLOR="#000000">Through the <B>System &gt; Software</B>
 menu, click on '<B>Update List</B>' </FONT>
 </P>
