@@ -5,8 +5,8 @@
 	<TITLE>Brother HL-1450 laser printer - adding ethernet port</TITLE>
 	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.4.1  (Win32)">
 	<META NAME="CREATED" CONTENT="0;0">
-	<META NAME="CHANGED" CONTENT="20250614;6275717">
-	<META NAME="KEYWORDS" CONTENT="Brother HL-1450 HL-1440 HL-1250 HL-1430 ethernet print server ethernet port openwrt TL-WR710N">
+	<META NAME="CHANGED" CONTENT="20250626;7290015">
+	<META NAME="KEYWORDS" CONTENT="Brother HL-1450 HL-1440 HL-1250 HL-1430 wifi wireless ethernet print server ethernet port openwrt TL-WR710N">
 	<META NAME="ProgId" CONTENT="FrontPage.Editor.Document">
 	<META HTTP-EQUIV="Content-Language" CONTENT="en-gb">
 </HEAD>
@@ -16,10 +16,11 @@
 </P>
 <HR>
 <P><FONT FACE="Arial"><FONT SIZE=6><B>Brother HL-1450
-(1240/1250/1440) laser printer &ndash; adding an Ethernet Port</B></FONT></FONT></P>
+(1240/1250/1440) laser printer &ndash; adding Ethernet &amp; Wifi</B></FONT></FONT></P>
 <P>First created 6 Nov 2020.</P>
 <P><FONT COLOR="#ff0000">14 June 2025: </FONT>Moved from failing
 tripod.com website.</P>
+<P><FONT COLOR="#ff0000">20 June 2025: </FONT>Added wifi instructions</P>
 <P><IMG SRC="images/brother0.jpg" NAME="graphics20" ALIGN=BOTTOM WIDTH=331 HEIGHT=289 BORDER=0></P>
 <P>I've owned a Brother HL-1450 laser printer since its purchase in
 2004. It has a centronics parallel port and USB1 socket for
@@ -410,6 +411,11 @@ menu, click on '<B>Update List</B>' </FONT>
 <P STYLE="margin-left: 0.97cm"><FONT COLOR="#000000"><IMG SRC="images/brotherN.jpg" NAME="graphics24" ALIGN=BOTTOM WIDTH=302 HEIGHT=163 BORDER=0></FONT></P>
 <P><BR><BR>
 </P>
+<P><FONT COLOR="#000000">You may need to close the web browser and
+restart it, to log into the OpenWrt router, for the Services tab to
+appear. (This is a known bug in 19.07.4)</FONT></P>
+<P><BR><BR>
+</P>
 <P STYLE="font-weight: normal"><FONT COLOR="#000000">Finally, tick
 the check box to 'enable' the print server.</FONT></P>
 <P STYLE="margin-left: 0.97cm"><FONT COLOR="#000000"><IMG SRC="images/brotherG.jpg" NAME="graphics17" ALIGN=BOTTOM WIDTH=469 HEIGHT=380 BORDER=0></FONT></P>
@@ -469,9 +475,13 @@ connect to a wifi network. ie. Create a wireless printer?</P>
 <P>The answer is 'Yes' in theory. However, in practise, you may find
 the wifi connection is severely degraded, because more than
 two-thirds of the TP-link router is shielded by the metal chassis of
-the laser printer. I don't recommend it.</P>
+the laser printer. I don't recommend it.  
+</P>
 <P>Personally, I would always opt for reliable ethernet connection
 every time, rather than use wifi connection for printing.</P>
+<P>Having said that, if you don't plan to install the TP-link into
+the laser printer, I have provided the instructions further down this
+page.</P>
 <P><BR><BR>
 </P>
 <P>Can an android or IOS device print to this HL-1450 printer? Simple
@@ -518,6 +528,165 @@ the MAC address (eg. 10:FE:ED.....) as shown in the above example if
 you cannot find the Hostname you had entered earlier.</P>
 <P>While logged into your router, you should configure it to supply a
 fixed IP address to the TL-wr710n using its MAC address.</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><FONT SIZE=4><U><B>Configuring TL-wr710n for wireless connection</B></U></FONT></P>
+<P><BR><BR>
+</P>
+<P>Flash the router with OpenWrt files as described earlier.</P>
+<P>Navigate to <B>Network &gt; Interfaces</B> menu.</P>
+<P>For the <B>LAN</B> interface, click <B>Edit </B>button.</P>
+<P>Change the IP subnet to one which is not in use.</P>
+<P>ie. change default 192.168.1.1 to 192.168.<FONT COLOR="#ff0000">111</FONT>.1
+</P>
+<P><IMG SRC="images/brother21.jpg" NAME="graphics21" ALIGN=MIDDLE WIDTH=369 HEIGHT=274 BORDER=0></P>
+<P>Save &amp; Apply changes.</P>
+<P>Reconnect to the router at new 192.168.111.1 address.</P>
+<P><BR><BR>
+</P>
+<P>Delete the redundant WAN6 interface</P>
+<P><IMG SRC="images/brother22.jpg" NAME="graphics22" ALIGN=BOTTOM WIDTH=776 HEIGHT=274 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Now to connect the router to your existing wifi.</P>
+<P>Navigate to <B>Network &gt; Interfaces</B> menu.</P>
+<P>For the <B>Wireless</B> interface, click Scan</P>
+<P><IMG SRC="images/brother23.jpg" NAME="graphics27" ALIGN=MIDDLE WIDTH=705 HEIGHT=139 BORDER=0></P>
+<P>Locate your wifi and click 'Join Network'</P>
+<P><IMG SRC="images/brother24.jpg" NAME="graphics28" ALIGN=MIDDLE WIDTH=705 HEIGHT=139 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Tick the checkbox shown below and enter your wifi password as
+shown below.</P>
+<P><IMG SRC="images/brother25.jpg" NAME="graphics29" ALIGN=MIDDLE WIDTH=518 HEIGHT=271 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>At the next screen, use these settings.</P>
+<P><IMG SRC="images/brother26.jpg" NAME="graphics30" ALIGN=MIDDLE WIDTH=518 HEIGHT=271 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Press Save &amp; Apply to continue</P>
+<P><IMG SRC="images/brother27.jpg" NAME="graphics31" ALIGN=MIDDLE WIDTH=632 HEIGHT=279 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>If the router successfully connects to your wifi, you should see a
+valid Ipv4 address as shown below.</P>
+<P>My wifi network uses 192.168.10.x subnet btw.</P>
+<P>Check internet access is working.</P>
+<P><IMG SRC="images/brother28.jpg" NAME="graphics32" ALIGN=MIDDLE WIDTH=639 HEIGHT=177 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Your computers will be printing to the IP address on the WWAN
+interface.  To ensure the IP address does not change,  you can go to
+your own wifi router and set up a static IP address if you wish.</P>
+<P><BR><BR>
+</P>
+<P>Alternatively, I recommend setting a static IP address directly on
+the TL-wr710n router.</P>
+<P>Click 'Edit' as shown above.</P>
+<P>Choose the following Protocol and click on the 'Swtich protocol'
+button</P>
+<P><IMG SRC="images/brother29.jpg" NAME="graphics33" ALIGN=MIDDLE WIDTH=408 HEIGHT=267 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Next we need to enter new WWAN IP address.  This must be an unused
+IP address on your wifi network. 
+</P>
+<P>In this example, my wifi network uses 192.168.<FONT COLOR="#ff0000">10</FONT>.x
+range, and I have chose 192.168.<FONT COLOR="#ff0000">10.226 </FONT><FONT COLOR="#000000">for
+the router.</FONT></P>
+<P><FONT COLOR="#000000">For IPv4 gateway, enter the LAN IP address
+of your wifi router.</FONT></P>
+<P><FONT COLOR="#000000">For DNS servers, I use values shown below.</FONT></P>
+<P><IMG SRC="images/brother30.jpg" NAME="graphics34" ALIGN=MIDDLE WIDTH=408 HEIGHT=267 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>Press Save &amp; Apply.</P>
+<P><IMG SRC="images/brother31.jpg" NAME="graphics35" ALIGN=MIDDLE WIDTH=774 HEIGHT=180 BORDER=0></P>
+<P>Check internet connection is working.</P>
+<P>You can also check router is connected to your wifi network, by
+navigating to  Status &gt; Overview page</P>
+<P>An incrementing 'Connected' time indicates a wifi connection
+exists.</P>
+<P><IMG SRC="images/brother32.jpg" NAME="graphics36" ALIGN=TEXTTOP WIDTH=505 HEIGHT=227 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P>To be able to manage the OpenWrt from from your main wifi network,
+we need to add a Port Forwarding rule to the firewall.</P>
+<P>Go to Network &gt; Firewall menu.</P>
+<P>Click on 'Add' button.</P>
+<P>Enter the four parameters shown below.</P>
+<P><IMG SRC="images/brother33.jpg" NAME="graphics37" ALIGN=TEXTTOP WIDTH=461 HEIGHT=383 BORDER=0></P>
+<P>Press Save.</P>
+<P><BR><BR>
+</P>
+<P>To be able to print from WWAN to LAN, we need to add the following
+rule too.</P>
+<P><IMG SRC="images/brother34.jpg" NAME="graphics38" ALIGN=TEXTTOP WIDTH=460 HEIGHT=369 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><IMG SRC="images/brother35.jpg" NAME="graphics39" ALIGN=TEXTTOP WIDTH=800 HEIGHT=290 BORDER=0></P>
+<P>Press Save &amp; Apply.</P>
+<P><BR><BR>
+</P>
+<P>Now to install the print server. Instructions below are reproduced
+below.</P>
+<P><FONT COLOR="#000000">Through the <B>System &gt; Software</B>
+menu, click on '<B>Update List</B>' </FONT>
+</P>
+<P><FONT COLOR="#000000"><IMG SRC="images/brotherM.jpg" NAME="graphics40" ALIGN=BOTTOM WIDTH=605 HEIGHT=135 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">Next install the following packages:</FONT></P>
+<P STYLE="margin-left: 0.97cm"><FONT COLOR="#000000">kmod-usb-printer</FONT></P>
+<P STYLE="margin-left: 0.97cm; font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3>luci-app-p910nd</FONT></FONT>
+</FONT>
+</P>
+<P STYLE="margin-left: 0.97cm"><FONT COLOR="#000000"><IMG SRC="images/brotherN.jpg" NAME="graphics41" ALIGN=BOTTOM WIDTH=302 HEIGHT=163 BORDER=0></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT COLOR="#000000">You may need to close the web browser and
+restart it, to log into the OpenWrt router, for the Services tab to
+appear. (This is a known bug in 19.07.4)</FONT></P>
+<P><BR><BR>
+</P>
+<P STYLE="font-weight: normal"><FONT COLOR="#000000">Finally, tick
+the check box to 'enable' the print server.</FONT></P>
+<P STYLE="margin-left: 0.97cm"><FONT COLOR="#000000"><IMG SRC="images/brotherG.jpg" NAME="graphics42" ALIGN=BOTTOM WIDTH=469 HEIGHT=380 BORDER=0></FONT></P>
+<P STYLE="margin-left: 0.97cm"><BR><BR>
+</P>
+<P>Press Save &amp; Apply.</P>
+<P><BR><BR>
+</P>
+<P>That's it!</P>
+<P><BR><BR>
+</P>
+<P>Configure your computers to print to the OpenWrt's WWAN IP
+address. In my example, it would be 192.168.10.226.</P>
+<P>Do NOT try to print to 192.168.111.1, it won't work, unless  your
+computer is connected to the ethernet LAN port on the OpenWrt router.</P>
+<P><BR><BR>
+</P>
+<P>To access the OpenWrt router from your main wifi network, simply
+log into the WWAN IP address. eg. 192.168.10.226.</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
 <P><BR><BR>
 </P>
 <P><BR><BR>
